@@ -262,20 +262,20 @@ triangle-words-count
 (pentagonal? 40755 1000)
 (hexagonal? 40755 1000)
 (hexagonal-and-pentagonal? 40755 1000)
+(defn tripentahexagonal? [n]
+  (if (hexagonal-and-pentagonal? (triangle n) n)
+    n
+    false))
 
-(hexagonal-and-pentagonal? (triangle 285) 1000)
+(tripentahexagonal? 100000)
+
+(defn tripentahexagonal-indexes-between [min max]
+  (filter identity 
+    (map tripentahexagonal? (range min max))))
+
+(tripentahexagonal-indexes-between 55000 56000)
 
 
-(defn keep-tripentahexagonal [number max-index]
-  (if (hexagonal-and-pentagonal? number max-index)
-    number))
-
-
-(defn tripentahexagonals [max-index]
-  (rest 
-    (keep #(keep-tripentahexagonal % max-index) (triangles max-index))))
-
-(tripentahexagonals 1000)
-(tripentahexagonals 100000)
-
-;; > 20000 
+;; > 50000 
+;; found ! n=55385 => 1533776805
+; (triangle 55385)

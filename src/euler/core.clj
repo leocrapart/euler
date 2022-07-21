@@ -76,7 +76,7 @@ words
     (filter identity
       (map is-triangle-word? words))))
 
-;; sol e42
+;; solved e42
 triangle-words-count
 
 
@@ -279,3 +279,5 @@ triangle-words-count
 ;; > 50000 
 ;; found ! n=55385 => 1533776805
 ; (triangle 55385)
+
+;;e45 solved

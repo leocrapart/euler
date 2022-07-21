@@ -76,12 +76,12 @@ words
     (filter identity
       (map is-triangle-word? words))))
 
-;; solved e42
 triangle-words-count
+;; solved e42
 
 
 
-
+;;e11
 ; diagonals - vertical - horizontal
 ; str -> grid -> diagonals -> products -> max
 ;grid 

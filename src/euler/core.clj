@@ -207,3 +207,75 @@ triangle-words-count
 (diagonal-product [97 99 49 52])
 (diagonals-products (diagonals grid))
 (max-product (diagonals grid))
+;;e11 solved
+
+
+
+;;e45
+(defn triangle [number]
+  (/ (* number (+ number 1)) 2))
+
+(defn triangles [n]
+  (map triangle (range n)))
+
+(defn pentagonal [number]
+  (/ (* number (- (* 3 number) 1)) 2))
+
+(defn pentagonals [n]
+  (map pentagonal (range n)))
+
+(defn hexagonal [number]
+  (* number (- (* 2 number) 1)))
+
+(defn hexagonals [n]
+  (map hexagonal (range n)))
+
+(triangles 1000)
+(pentagonals 1000)
+(hexagonals 1000)
+
+(defn in? 
+  "true if coll contains elm"
+  [coll elm]  
+  (some #(= elm %) coll))
+
+(in? (hexagonals 1000) 15)
+
+
+(defn pentagonal? [number max-index]
+  (if (in? (pentagonals max-index) number)
+    true
+    false))
+
+
+(defn hexagonal? [number max-index]
+  (if (in? (hexagonals max-index) number)
+    true
+    false))
+
+
+(defn hexagonal-and-pentagonal? [number max-index]
+  (and (hexagonal? number max-index)
+       (pentagonal? number max-index)))
+
+
+(pentagonal? 40755 1000)
+(hexagonal? 40755 1000)
+(hexagonal-and-pentagonal? 40755 1000)
+
+(hexagonal-and-pentagonal? (triangle 285) 1000)
+
+
+(defn keep-tripentahexagonal [number max-index]
+  (if (hexagonal-and-pentagonal? number max-index)
+    number))
+
+
+(defn tripentahexagonals [max-index]
+  (rest 
+    (keep #(keep-tripentahexagonal % max-index) (triangles max-index))))
+
+(tripentahexagonals 1000)
+(tripentahexagonals 100000)
+
+;; > 20000 
